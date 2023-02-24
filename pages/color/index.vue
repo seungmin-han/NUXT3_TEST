@@ -1,5 +1,5 @@
 <template>
-  	<h1>Post</h1>
+  	<h1>Colors</h1>
   	<div class="wrapper">
 		<div 
 			v-for="(color, index) in colorList" 
@@ -13,7 +13,7 @@
 			</div>
 		</template>
   	</div>
-	<div ref="scroll" class=""></div>
+	<div ref="scroll"></div>
 </template>
 
 <script setup>

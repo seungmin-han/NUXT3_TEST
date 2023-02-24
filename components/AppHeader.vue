@@ -1,8 +1,8 @@
 <template>
   	<nav>
     	<ul>
-        	<li><NuxtLink to="/">home</NuxtLink></li>
-        	<li><NuxtLink to="/post">post</NuxtLink></li>
+        	<li><NuxtLink to="/">Home</NuxtLink></li>
+        	<li><NuxtLink to="/color">Colors</NuxtLink></li>
     	</ul>
   	</nav>
 </template>
