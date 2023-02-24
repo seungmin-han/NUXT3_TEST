@@ -1,28 +1,43 @@
 <template>
   	<h1>Post</h1>
   	<div class="wrapper">
-		<template v-if="!isLoaded">
-			<div v-for="i in 30" :key="i" class="skeleton">
-				<span>{{ i }}</span>
-			</div>
-		</template>
-		
 		<div 
 			v-for="(color, index) in colorList" 
 			:key="color+index" 
 			:style="`background-color: ${color.backgroundColor};`">
 			<span :style="`color: ${color.fontColor};`">{{color.backgroundColor}}</span>
-		</div>
+		</div>		
+		<template v-if="!isLoaded">
+			<div v-for="i in 50" :key="i" class="skeleton">
+				<span>{{ i }}</span>
+			</div>
+		</template>
   	</div>
+	<div ref="scroll" class=""></div>
 </template>
 
 <script setup>
+	const scroll = ref(null);
+
+	const option = {
+		root: null,
+		rootMargin: "0px",
+		threshold: 1,	
+	}
+
+	let observer = null;
+
 	const colorList = reactive([]);
-	const isLoaded = computed(() => {
-		return colorList.length;
-	});
+	const isLoaded = ref(false);
 	onMounted(() => {
-		getColors(2000).then(value => colorList.push(...value));	
+		getColors(1500).then(value => {colorList.push(...value); isLoaded.value = true;});	
+		observer = new IntersectionObserver(e => {
+			if (e[0].isIntersecting) {
+				isLoaded.value = false;
+				getColors(3000).then(value => {colorList.push(...value);isLoaded.value = true;});
+			}
+		}, option);
+		observer.observe(scroll.value);
 	})
 
 	const colorGenerator = ()=>{
