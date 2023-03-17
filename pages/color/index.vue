@@ -1,6 +1,5 @@
 <template>
   	<h1>Colors</h1>
-	<button @click="sortList">sort</button>
   	<div class="wrapper">
 		<div 
 			v-for="(color, index) in colorList" 
@@ -30,19 +29,12 @@
 
 	const colorList = reactive([]);
 	const isLoaded = ref(false);
-
-	const sortList = () => {
-		colorList.sort((a, b) => {
-			return a.backgroundColor.toLowerCase() > b.backgroundColor.toLowerCase() ? -1 : 1;
-		})	
-	}
-	
 	onMounted(() => {
 		getColors(1500).then(value => {colorList.push(...value); isLoaded.value = true;});	
 		observer = new IntersectionObserver(e => {
 			if (e[0].isIntersecting) {
 				isLoaded.value = false;
-				getColors().then(value => {colorList.push(...value);isLoaded.value = true;});
+				getColors(3000).then(value => {colorList.push(...value);isLoaded.value = true;});
 			}
 		}, option);
 		observer.observe(scroll.value);
@@ -57,6 +49,7 @@
 		}
 		return hexCode;
 	};
+
 	const setFontColor = (backgroundColor) => {
 		backgroundColor = backgroundColor.slice(1,);
 		let r = parseInt(backgroundColor.slice(0, 2), 16);
@@ -64,6 +57,9 @@
 		let b = parseInt(backgroundColor.slice(4, 6), 16);
 		return (r * 0.299 + g * 0.587 + b * 0.114) > 186 ? 'black' : 'white';
 	};
+
+	
+
 	const getColors = ms=>{
 		return new Promise(resolve=>{
 			setTimeout(()=>{
