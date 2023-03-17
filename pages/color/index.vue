@@ -2,6 +2,9 @@
   	<h1>Colors</h1>
   	<div class="wrapper">
 		<div 
+			@mouseover="setScale($event, true)"
+			@mouseleave="setScale($event, false)"
+			@click="copyColor(color)"
 			v-for="(color, index) in colorList" 
 			:key="color+index" 
 			:style="`background-color: ${color.backgroundColor};`">
@@ -13,10 +16,14 @@
 			</div>
 		</template>
   	</div>
+	<Toast v-if="showToast" :text="toastText" :color="copiedColor" @close="showToast = false"></Toast>
 	<div ref="scroll"></div>
 </template>
 
 <script setup>
+	const showToast = ref(false);
+	const toastText = ref('');
+	const copiedColor = ref({});
 	const scroll = ref(null);
 
 	const option = {
@@ -39,6 +46,28 @@
 		}, option);
 		observer.observe(scroll.value);
 	})
+
+	const setScale = (event, isIn) => {
+		if (isIn) {
+			event.target.classList.add('active');	
+		} else {
+			event.target.classList.remove('active');	
+		}
+	};
+
+	const copyColor = (color) => {
+		if (showToast.value) {
+			showToast.value = false;
+		} 
+		setTimeout(() => {
+			showToast.value = true;
+		}, );
+		
+		toastText.value = 'Copy it!';
+		copiedColor.value = color;
+		window.navigator.clipboard.writeText(color.backgroundColor);
+	};
+
 
 	const colorGenerator = ()=>{
 		const ARR = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
@@ -84,7 +113,9 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
+		position: relative;
 		> div {
+			cursor: pointer;
 			margin: 0 auto;
 			width: 300px;
 			height: 100px;
@@ -98,6 +129,11 @@
 				background-color: #eee;
 				color: #eee;
 				overflow: hidden;
+			}
+			&.active {
+				z-index: 100;
+				transform: scale(1.1);
+				box-shadow: 0px 0px 5px #000;
 			}
 		}
 	}
