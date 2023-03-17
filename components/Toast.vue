@@ -16,6 +16,7 @@ const emit = defineEmits(['close']);
 
 <style lang="scss" scoped>
     .toast_wrap {
+        z-index: 300;
         background-color: rgba($color: #333, $alpha: 0.6);
         color: #fff;
         font-weight: bold;
