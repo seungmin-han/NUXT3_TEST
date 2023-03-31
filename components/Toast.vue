@@ -22,6 +22,20 @@
             }
         ); 
         setTimeout(() => {
+            gsap.fromTo(
+                ".toast_wrap",
+                {
+                    opacity: 1,
+                    y: 0,
+                },
+                {
+                    duration: 0.5,
+                    opacity: 0,
+                    y: "50%",
+                }
+            );
+        }, 2500);
+        setTimeout(() => {
             emit('close');
         }, 3000);    
     })
