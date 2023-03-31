@@ -1,50 +1,54 @@
 <template>
-  	<h1>Colors</h1>
-  	<div class="wrapper">
-		<div 
-			@mouseover="setScale($event, true)"
-			@mouseleave="setScale($event, false)"
-			@click="copyColor(color)"
-			v-for="(color, index) in colorList" 
-			:key="color+index" 
-			:style="`background-color: ${color.backgroundColor};`">
-			<span :style="`color: ${color.fontColor};`">{{color.backgroundColor}}</span>
-		</div>		
-		<template v-if="!isLoaded">
-			<div v-for="i in 50" :key="i" class="skeleton">
-				<span>{{ i }}</span>
-			</div>
-		</template>
-  	</div>
+	<div class="container">
+  		<h1>Colors</h1>
+  		<div class="wrapper">
+			<div 
+				@mouseover="setScale($event, true)"
+				@mouseleave="setScale($event, false)"
+				@click="copyColor(color)"
+				v-for="(color, index) in colorList" 
+				:key="color+index" 
+				:style="`background-color: ${color.backgroundColor};`">
+				<span :style="`color: ${color.fontColor};`">{{color.backgroundColor}}</span>
+			</div>		
+			<template v-if="!isLoaded">
+				<div v-for="i in 40" :key="i" class="skeleton">
+					<span>{{ i }}</span>
+				</div>
+			</template>
+  		</div>
+	</div>
 	<Toast v-if="showToast" :text="toastText" :color="copiedColor" @close="showToast = false"></Toast>
-	<div ref="scroll"></div>
 </template>
 
 <script setup>
+	import { useInfiniteScroll } from '@vueuse/core'
 	const showToast = ref(false);
 	const toastText = ref('');
 	const copiedColor = ref({});
-	const scroll = ref(null);
-
-	const option = {
-		root: null,
-		rootMargin: "0px",
-		threshold: 1,	
-	}
+	const el = ref(document);
 
 	let observer = null;
 
 	const colorList = reactive([]);
 	const isLoaded = ref(false);
+
+	useInfiniteScroll(
+	  el,
+		() => {
+			isLoaded.value = false;
+	    	getColors(3000).then(value => {colorList.push(...value);isLoaded.value = true;});
+	  },
+	)
 	onMounted(() => {
 		getColors(1500).then(value => {colorList.push(...value); isLoaded.value = true;});	
-		observer = new IntersectionObserver(e => {
-			if (e[0].isIntersecting) {
-				isLoaded.value = false;
-				getColors(3000).then(value => {colorList.push(...value);isLoaded.value = true;});
-			}
-		}, option);
-		observer.observe(scroll.value);
+		// observer = new IntersectionObserver(e => {
+		// 	if (e[0].isIntersecting) {
+		// 		isLoaded.value = false;
+		// 		getColors(3000).then(value => {colorList.push(...value);isLoaded.value = true;});
+		// 	}
+		// }, option);
+		// observer.observe(scroll.value);
 	})
 
 	const setScale = (event, isIn) => {
@@ -93,7 +97,7 @@
 		return new Promise(resolve=>{
 			setTimeout(()=>{
 					let colorObj = [];
-					for (let i = 0; i < 50; i++) {
+					for (let i = 0; i < 40; i++) {
 						let backgroundColor = colorGenerator();
 						colorObj.push({
 							backgroundColor,
@@ -108,19 +112,18 @@
 </script>
 <style lang="scss" scoped>
 	.wrapper {
-		margin: 0 auto;
-		width: 1750px;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		position: relative;
+		// height: 500px;
+		// overflow-y: scroll;
 		> div {
 			cursor: pointer;
 			margin: 0 auto;
-			width: 300px;
+			width: 24.5%;
 			height: 100px;
-			padding: 10px 20px;
-			margin: 5px;
+			margin-top: 5px;
 			text-align: center;
 			line-height: 100px;
 			font-weight: bold;
