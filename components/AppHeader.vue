@@ -31,6 +31,9 @@ export default {
 
 <style lang="scss" scoped>
     header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
         padding: 20px;
         background-color: #333;
         nav {
