@@ -5,9 +5,22 @@
 </template>
 
 <script setup>
-const props = defineProps(['text', 'color']);
-const emit = defineEmits(['close']);
+    import gsap from 'gsap';
+    const props = defineProps(['text', 'color']);
+    const emit = defineEmits(['close']);
     onMounted(() => {
+        gsap.fromTo(
+            ".toast_wrap",
+            {
+                opacity: 0,
+                y: "50%",
+            },
+            {
+                duration: 0.5,
+                opacity: 1,
+                y: 0,
+            }
+        ); 
         setTimeout(() => {
             emit('close');
         }, 3000);    
