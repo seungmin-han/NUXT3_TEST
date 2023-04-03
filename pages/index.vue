@@ -1,11 +1,8 @@
 <template>
     <div class="container">
+        <MainBanner></MainBanner>
         <h1>Index</h1>
-        <div id="heading">
-            hi
-        </div>
         <div id="content">
-            <div id="box">content</div>
         </div>
     </div>
 </template>
@@ -27,7 +24,7 @@
         //     x: 400,
         // })    
 		gsap.fromTo(
-            "#heading",
+            ".main_banner",
             {
                 opacity: 0,
                 // y: "-100%",
@@ -38,26 +35,31 @@
                 y: 0,
             }
         ); 
+
+        gsap.fromTo(
+            ".box",
+            {
+                opacity: 0,
+                // y: "-100%",
+            },
+            {
+                duration: 1.5,
+                opacity: 1,
+            }
+        ); 
+
+        
     })
 </script>
 
 <style scoped lang="scss">
-    #heading {
-        background-color: #000;
-        color: #fff;
-        padding: 30px;
-    }
 
     #content {
-        height: 2000px;
         position: relative;
-
-        #box {
-            position: absolute;
-            top: 1000px;
-            width: 100px;
-            height: 100px;
-            background-color: red;
-        }
+        display: flex;
+        justify-content: space-between;
+        align-content: flex-start;
+        flex-wrap: wrap;
+    
     }
 </style>
