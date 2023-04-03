@@ -25,11 +25,12 @@ export default {
     }
 
     .container {
-        width: 1200px;
+        max-width: 1200px;
     }
 </style>
 
 <style lang="scss" scoped>
+
     header {
         position: sticky;
         top: 0;
