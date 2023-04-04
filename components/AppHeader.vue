@@ -6,6 +6,7 @@
 				<li><NuxtLink to="/color">Colors</NuxtLink></li>
 				<li><NuxtLink to="/photo">Photos</NuxtLink></li>
 				<li><NuxtLink to="/chart">Chart</NuxtLink></li>
+				<li><NuxtLink to="/3DView">3DView</NuxtLink></li>
 			</ul>
 		</nav>
 	</header>
