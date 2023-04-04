@@ -57,4 +57,9 @@
 	img {
 		width: 400px;
 	}
+
+	.item {
+		border-radius: 10px;
+		overflow: hidden;
+	}
 </style>
