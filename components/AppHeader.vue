@@ -5,6 +5,7 @@
 				<li><NuxtLink to="/">Home</NuxtLink></li>
 				<li><NuxtLink to="/color">Colors</NuxtLink></li>
 				<li><NuxtLink to="/photo">Photos</NuxtLink></li>
+				<li><NuxtLink to="/chart">Chart</NuxtLink></li>
 			</ul>
 		</nav>
 	</header>
