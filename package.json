@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@egjs/flicking-plugins": "^4.7.0",
+    "@egjs/view3d": "^2.10.1",
     "@egjs/vue3-flicking": "^4.10.6",
     "@egjs/vue3-infinitegrid": "^4.9.0",
     "@vueuse/core": "^9.13.0",
