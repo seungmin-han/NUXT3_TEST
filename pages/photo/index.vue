@@ -1,5 +1,5 @@
 <template>
-	<div id="content">
+	<div class="container">
 		<PhotoGrid></PhotoGrid>
 	</div>
 </template>
@@ -7,7 +7,7 @@
 <script setup></script>
 
 <style lang="scss" scoped>
-	#content {
+	.container {
 		margin-top: 50px;
 	}
 </style>
