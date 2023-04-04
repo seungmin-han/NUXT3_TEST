@@ -2,9 +2,6 @@
 	<div class="container">
 		<MainBanner></MainBanner>
 		<h1>Index</h1>
-		<div id="content">
-			<PhotoGrid></PhotoGrid>
-		</div>
 	</div>
 </template>
 
