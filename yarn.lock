@@ -387,7 +387,7 @@
   "resolved" "https://registry.npmjs.org/@egjs/list-differ/-/list-differ-1.0.0.tgz"
   "version" "1.0.0"
 
-"@egjs/view3d@^2.10.1":
+"@egjs/view3d@^2.10.1", "@egjs/view3d@~2.10.1":
   "integrity" "sha512-aJJgmUh4ILdRibzU2grV3h2W40e4Ide1PZxMtGtvri7WvPHsYKxFepTFyX71cU+IdQJreSSk6rPUEeKCBKD9aA=="
   "resolved" "https://registry.npmjs.org/@egjs/view3d/-/view3d-2.10.1.tgz"
   "version" "2.10.1"
@@ -410,6 +410,13 @@
   dependencies:
     "@egjs/infinitegrid" "~4.9.0"
     "cpx" "^1.5.0"
+
+"@egjs/vue3-view3d@^2.3.1":
+  "integrity" "sha512-pN3uywxQXgigOLMVkySlTzAY4DqyZfN08iLIsGpmhlYXbqsTF+Mq9/TYF/STOzWGsioKBj82D6x6xS8d9BH5qA=="
+  "resolved" "https://registry.npmjs.org/@egjs/vue3-view3d/-/vue3-view3d-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@egjs/view3d" "~2.10.1"
 
 "@esbuild/win32-x64@0.16.17":
   "integrity" "sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q=="
