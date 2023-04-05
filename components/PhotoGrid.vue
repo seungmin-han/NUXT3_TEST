@@ -12,10 +12,12 @@
 			:data-grid-groupkey="item.groupKey"
 		>
 			<div class="thumnail">
-				<img
-					:src="item.url"
-					alt=""
-				/>
+				<ImageView>
+					<img
+						:src="item.url"
+						alt=""
+					/>
+				</ImageView>
 			</div>
 		</div>
 	</masonry-infinite-grid>
