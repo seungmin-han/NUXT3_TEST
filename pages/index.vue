@@ -2,47 +2,54 @@
 	<div class="container">
 		<MainBanner></MainBanner>
 		<h1>Index</h1>
+		<ImageView>
+			<img
+				src="~/assets/sky.jpg"
+				alt=""
+				width="1200"
+			/>
+		</ImageView>
+		<ImageZoom
+			class="zoom"
+			:width="1200"
+			:height="600"
+			:origin-x="0"
+			:origin-y="0"
+			:minScale="0.9"
+			:contentWidth="1200"
+			:contentHeight="600"
+		>
+			<img
+				src="~/assets/sky.jpg"
+				alt=""
+				width="1200"
+			/>
+		</ImageZoom>
 	</div>
 </template>
 
 <script setup>
 	import gsap from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
-	gsap.registerPlugin(ScrollTrigger);
+	import ImageZoom from '@coddicat/vue3-pinch-scroll-zoom';
+
+	const zoom = event => {
+		if (isOver) {
+			return;
+		}
+		console.log(isOver, event);
+	};
+
 	onMounted(() => {
-		// gsap.to('#box', {
-		//     scrollTrigger: {
-		//         trigger: '#box',
-		//         markers: true,
-		//         toggleActions: 'restart reverse',
-		//         start: 'top center',
-		//         end: '+100',
-		//         scrub: true,
-		//     },
-		//     x: 400,
-		// })
 		gsap.fromTo(
 			'.main_banner',
 			{
 				opacity: 0,
-				// y: "-100%",
+				y: '50%',
 			},
 			{
-				duration: 1.5,
+				duration: 1,
 				opacity: 1,
 				y: 0,
-			}
-		);
-
-		gsap.fromTo(
-			'.box',
-			{
-				opacity: 0,
-				// y: "-100%",
-			},
-			{
-				duration: 1.5,
-				opacity: 1,
 			}
 		);
 	});
@@ -55,5 +62,9 @@
 		justify-content: space-between;
 		align-content: flex-start;
 		flex-wrap: wrap;
+	}
+
+	.zoom {
+		overflow: hidden;
 	}
 </style>
