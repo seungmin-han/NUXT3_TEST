@@ -32,30 +32,30 @@
 	let isOver = ref(false);
 	let scale = ref(100);
 	const scaleLevel = 10;
-	let position = reactive({ x: 0, y: 0 });
+	let origin = reactive({ x: 0, y: 0 });
 	const { lock, unlock, element } = usePointerLock();
 	const { elementX, elementY } = useMouseInElement(imageViewer);
 	const { x, y } = useMouse({ type: 'movement' });
 
 	const mouseMove = () => {
 		if (element.value) {
-			if (0 <= position.x - x.value && position.x - x.value <= element.value.clientWidth) {
-				position.x -= x.value;
+			if (0 <= origin.x - x.value && origin.x - x.value <= element.value.clientWidth) {
+				origin.x -= x.value;
 			}
-			if (0 <= position.y - y.value && position.y - y.value <= element.value.clientHeight) {
-				position.y -= y.value;
+			if (0 <= origin.y - y.value && origin.y - y.value <= element.value.clientHeight) {
+				origin.y -= y.value;
 			}
-			container.value.style.transformOrigin = `${position.x}px ${position.y}px`;
+			container.value.style.transformOrigin = `${origin.x}px ${origin.y}px`;
 		}
 	};
 
 	const zoom = evt => {
 		evt.preventDefault();
 		if (isOver.value) {
-			position.x = elementX.value;
-			position.y = elementY.value;
-			// position.x = evt.pageX - imageViewer.value.offsetLeft;
-			// position.y = evt.pageY - imageViewer.value.offsetTop;
+			origin.x = elementX.value;
+			origin.y = elementY.value;
+			// origin.x = evt.pageX - imageViewer.value.offsetLeft;
+			// origin.y = evt.pageY - imageViewer.value.offsetTop;
 			if (evt.deltaY === -100) {
 				if (props.maxScale * 100 >= scale.value + scaleLevel) {
 					scale.value += scaleLevel;
@@ -66,7 +66,7 @@
 				}
 			}
 			container.value.style.transform = `scale(${(scale.value / 100).toFixed(2)})`;
-			container.value.style.transformOrigin = `${position.x}px ${position.y}px`;
+			container.value.style.transformOrigin = `${origin.x}px ${origin.y}px`;
 		}
 	};
 </script>
