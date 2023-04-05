@@ -1,1 +1,1 @@
-*.glb filter=lfs diff=lfs merge=lfs -text
+/public/assets/nakagin.glb filter=lfs diff=lfs merge=lfs -text
