@@ -1,8 +1,6 @@
 <template>
 	<div
 		class="image-viewer"
-		@mouseover="isOver = true"
-		@mouseout="isOver = false"
 		@mousemove="mouseMove"
 		@mousedown.capture="lock"
 		@mouseup="unlock"
@@ -15,6 +13,10 @@
 		>
 			<slot></slot>
 		</div>
+		<Toast
+			v-if="scale > 100"
+			text="화면을 누른 채로 움직일 수 있습니다."
+		></Toast>
 	</div>
 </template>
 
@@ -29,7 +31,6 @@
 
 	const imageViewer = ref(null);
 	const container = ref(null);
-	let isOver = ref(false);
 	let scale = ref(100);
 	const scaleLevel = 10;
 	let origin = reactive({ x: 0, y: 0 });
@@ -51,23 +52,20 @@
 
 	const zoom = evt => {
 		evt.preventDefault();
-		if (isOver.value) {
-			origin.x = elementX.value;
-			origin.y = elementY.value;
-			// origin.x = evt.pageX - imageViewer.value.offsetLeft;
-			// origin.y = evt.pageY - imageViewer.value.offsetTop;
-			if (evt.deltaY === -100) {
-				if (props.maxScale * 100 >= scale.value + scaleLevel) {
-					scale.value += scaleLevel;
-				}
-			} else {
-				if (scale.value - scaleLevel >= 100) {
-					scale.value -= scaleLevel;
-				}
+		// origin.x = evt.pageX - imageViewer.value.offsetLeft;
+		// origin.y = evt.pageY - imageViewer.value.offsetTop;
+		if (evt.deltaY === -100 && props.maxScale * 100 >= scale.value + scaleLevel) {
+			if (100 + scaleLevel > scale.value) {
+				origin.x = elementX.value;
+				origin.y = elementY.value;
 			}
-			container.value.style.transform = `scale(${(scale.value / 100).toFixed(2)})`;
-			container.value.style.transformOrigin = `${origin.x}px ${origin.y}px`;
+			scale.value += scaleLevel;
+		} else if (evt.deltaY === 100 && scale.value - scaleLevel >= 100) {
+			scale.value -= scaleLevel;
 		}
+
+		container.value.style.transform = `scale(${(scale.value / 100).toFixed(2)})`;
+		container.value.style.transformOrigin = `${origin.x}px ${origin.y}px`;
 	};
 </script>
 
