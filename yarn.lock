@@ -320,14 +320,6 @@
   dependencies:
     "mime" "^3.0.0"
 
-"@coddicat/vue3-pinch-scroll-zoom@^0.3.0":
-  "integrity" "sha512-EEyR1qPoiWstbxAP80Wl6GJViyBgUXUqLgEyrUnORUYd3WU15wZAPCCQqZhwFwIjYWXto9QdTmj8v3U9HoR98Q=="
-  "resolved" "https://registry.npmjs.org/@coddicat/vue3-pinch-scroll-zoom/-/vue3-pinch-scroll-zoom-0.3.0.tgz"
-  "version" "0.3.0"
-  dependencies:
-    "lodash" "^4.17.21"
-    "vue" "^3.2.36"
-
 "@egjs/agent@^2.2.1":
   "integrity" "sha512-XvksSENe8wPeFlEVouvrOhKdx8HMniJ3by7sro2uPF3M6QqWwjzVcmvwoPtdjiX8O1lfRoLhQMp1a7NGlVTdIA=="
   "resolved" "https://registry.npmjs.org/@egjs/agent/-/agent-2.4.3.tgz"
@@ -6417,7 +6409,7 @@
   dependencies:
     "@vue/devtools-api" "^6.4.5"
 
-"vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.36", "vue@^3.2.47", "vue@>=2.7 || >=3", "vue@3.2.47":
+"vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.47", "vue@>=2.7 || >=3", "vue@3.2.47":
   "integrity" "sha512-60188y/9Dc9WVrAZeUVSDxRQOZ+z+y5nO2ts9jWXSTkMvayiWxCWOWtBQoYjLeccfXkiiPZWAHcV+WTPhkqJHQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.47.tgz"
   "version" "3.2.47"
