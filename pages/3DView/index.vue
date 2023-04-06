@@ -1,8 +1,8 @@
 <template>
 	<div class="container">
 		<View3D
-			src="assets/nakagin.glb"
-			poster="assets/nakagin.jpg"
+			src="/public/assets/nakagin.glb"
+			poster="/public/assets/nakagin.jpg"
 			@ready="onReady"
 			:plugins="plugins"
 		>
