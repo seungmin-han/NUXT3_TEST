@@ -21,7 +21,7 @@
                 @click="setOpen(index)"
                 :class="doorList[index-1] ? 'open' : 'close'"
             > -->
-			<div
+			<!-- <div
 				class="door"
 				@click="setOpen(index)"
 				:class="doorList[index - 1] ? 'open' : 'close'"
@@ -31,7 +31,7 @@
 			<div
 				class="backdoor"
 				@click="setOpen(index)"
-			></div>
+			></div> -->
 			<div class="frame"></div>
 		</div>
 		<template #viewport>
