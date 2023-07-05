@@ -16,7 +16,7 @@
 			type: String,
 		},
 		color: {
-			type: String,
+			type: Object,
 		},
 		duration: {
 			type: Number,
