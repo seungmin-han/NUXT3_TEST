@@ -15,7 +15,7 @@
 		</div>
 		<Toast
 			v-if="scale > 100"
-			text="화면을 누른 채로 움직일 수 있습니다."
+			:text="toastText"
 		></Toast>
 	</div>
 </template>
@@ -26,6 +26,10 @@
 		maxScale: {
 			type: Number,
 			default: 5,
+		},
+		toastText: {
+			type: String,
+			default: '화면을 누른 채로 움직일 수 있습니다.',
 		},
 	});
 
@@ -39,6 +43,7 @@
 	const { x, y } = useMouse({ type: 'movement' });
 
 	const mouseMove = () => {
+		if (container.value.style.transform.includes('scale(1)')) return;
 		if (element.value) {
 			if (0 <= origin.x - x.value && origin.x - x.value <= element.value.clientWidth) {
 				origin.x -= x.value;
@@ -52,8 +57,6 @@
 
 	const zoom = evt => {
 		evt.preventDefault();
-		// origin.x = evt.pageX - imageViewer.value.offsetLeft;
-		// origin.y = evt.pageY - imageViewer.value.offsetTop;
 		if (evt.deltaY === -100 && props.maxScale * 100 >= scale.value + scaleLevel) {
 			if (100 + scaleLevel > scale.value) {
 				origin.x = elementX.value;
