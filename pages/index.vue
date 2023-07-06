@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<MainBanner></MainBanner>
-		<h1>Index</h1>
+		<h1 @click="tmp">Index</h1>
 		<ImageView>
 			<img
 				src="~/assets/sky.jpg"
@@ -14,7 +14,9 @@
 
 <script setup>
 	import gsap from 'gsap';
-
+	const tmp = async () => {
+		console.log(useFetch('/test'));
+	};
 	onMounted(() => {
 		gsap.fromTo(
 			'.main_banner',
