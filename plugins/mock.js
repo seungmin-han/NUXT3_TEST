@@ -1,4 +1,4 @@
-// import { worker } from "@/mocks/browser";
+import { worker } from "@/mocks/browser";
 // import { handlers } from '../mocks/handlers';
 // import { setupWorker } from 'msw';
 
@@ -9,7 +9,7 @@
 
 
 export default defineNuxtPlugin(() => {
-    // worker.start();
+    worker.start();
     // console.log(handlers);
     // const worker = setupWorker(...handlers);
     // worker.start({ onUnhandledRequest: "bypass", });
