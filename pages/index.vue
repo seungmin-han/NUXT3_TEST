@@ -14,8 +14,9 @@
 
 <script setup>
 	import gsap from 'gsap';
+	import axios from 'axios';
 	const tmp = async () => {
-		console.log(useFetch('/test'));
+		console.log(axios.post('/login').then(res => console.log(res)));
 	};
 	onMounted(() => {
 		gsap.fromTo(
