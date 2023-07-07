@@ -26,17 +26,20 @@
 	const store = useModalStore();
 	const el = ref(null);
 	const { x, y, style } = useDraggable(el, { initialValue: { x: image.x, y: image.y } });
-	const idx = store.modals.findIndex(v => v.fileName == image.fileName);
+	let idx = store.modals.findIndex(v => v.fileName == image.fileName);
 
 	watch([x, y], ([x, y]) => {
-		store.modals[idx] = { ...store.modals[idx], x, y };
+		store.modals[idx] = { ...store.modals[idx], x, y, isMove: true };
 	});
 
 	onMounted(() => {
-		el.value.style.transform = `translate(-${el.value.clientWidth / 2}px, -${el.value.clientHeight / 2}px)`;
+		if (!image.isMove) {
+			el.value.style.transform = `translate(-${el.value.clientWidth / 2}px, -${el.value.clientHeight / 2}px)`;
+		}
 	});
 
 	const closeModal = () => {
+		idx = store.modals.findIndex(v => v.fileName == image.fileName);
 		store.modals.splice(idx, 1);
 	};
 </script>
